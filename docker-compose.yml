@@ -38,8 +38,6 @@ services:
       - DB_USER=postgres
       - DB_PASS=admin12345
       - DB_NAME=equipment_db
-    ports:
-      - "3000:3000"
     networks:
       - equipment-network
     depends_on:

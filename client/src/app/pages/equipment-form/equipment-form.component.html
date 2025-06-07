@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <h2>{{ isEdit ? "แก้ไข" : "เพิ่ม" }}อุปกรณ์</h2>
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="mb-3">
+      <label>ชื่อ</label>
+      <input formControlName="name" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label>รายละเอียด</label>
+      <textarea formControlName="description" class="form-control"></textarea>
+    </div>
+    <div class="mb-3">
+      <label>จำนวน</label>
+      <input type="number" formControlName="quantity" class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label>วันที่ซื้อ</label>
+      <input type="date" formControlName="purchaseDate" class="form-control" />
+    </div>
+    <button class="btn btn-success">บันทึก</button>
+    <button class="btn btn-secondary ms-2" routerLink="/equipment">
+      ยกเลิก
+    </button>
+  </form>
+</div>

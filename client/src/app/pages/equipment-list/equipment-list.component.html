@@ -1,0 +1,33 @@
+<div class="container mt-4">
+  <h2>รายการอุปกรณ์</h2>
+  <button class="btn btn-primary mb-3" routerLink="/equipment/add">
+    + เพิ่มอุปกรณ์
+  </button>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ชื่อ</th>
+        <th>รายละเอียด</th>
+        <th>จำนวน</th>
+        <th>วันที่ซื้อ</th>
+        <th>การจัดการ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of equipmentList">
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.purchaseDate }}</td>
+        <td>
+          <button class="btn btn-warning btn-sm" (click)="edit(item.id!)">
+            แก้ไข
+          </button>
+          <button class="btn btn-danger btn-sm" (click)="delete(item.id!)">
+            ลบ
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

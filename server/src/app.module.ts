@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EquipmentModule } from './equipment/equipment.module';
@@ -7,16 +8,23 @@ import { EquipmentEntity } from './equipment/equipment.entity/equipment.entity';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'admin12345',
-      database: 'equipment_db',
-      entities: [EquipmentEntity],
-      autoLoadEntities: true,
-      synchronize: true, // Note: Set to false in production
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => ({
+        type: 'postgres',
+        host: config.get<string>('DB_HOST'),
+        port: parseInt(config.get<string>('DB_PORT') || '5432', 10),
+        username: config.get<string>('DB_USER'),
+        password: config.get<string>('DB_PASS'),
+        database: config.get<string>('DB_NAME'),
+        entities: [EquipmentEntity],
+        autoLoadEntities: true,
+        synchronize: true, // Note: Set to false in production
+      }),
     }),
     EquipmentModule,
   ],

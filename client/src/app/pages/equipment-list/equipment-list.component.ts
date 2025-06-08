@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Equipment, EquipmentService } from '../../services/equipment.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-equipment-list',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './equipment-list.component.html',
   styleUrl: './equipment-list.component.css',
 })

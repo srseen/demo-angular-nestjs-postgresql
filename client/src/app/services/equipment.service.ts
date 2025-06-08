@@ -14,7 +14,7 @@ export interface Equipment {
   providedIn: 'root',
 })
 export class EquipmentService {
-  private api = 'http://server:3000/equipment';
+  private api = 'api/equipment';
 
   constructor(private http: HttpClient) {}
 

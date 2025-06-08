@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Equipment, EquipmentService } from '../../services/equipment.service';
+import { EquipmentService } from '../../services/equipment.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({

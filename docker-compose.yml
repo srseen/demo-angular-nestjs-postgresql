@@ -26,12 +26,14 @@ services:
     depends_on:
       - postgres
 
-  backend:
+  server:
     build:
       context: ./server
       dockerfile: Dockerfile
     container_name: backend
     restart: unless-stopped
+    ports:
+      - "3000:3000"
     environment:
       - DB_HOST=postgres
       - DB_PORT=5432
@@ -43,7 +45,7 @@ services:
     depends_on:
       - postgres
 
-  frontend:
+  client:
     build:
       context: ./client
       dockerfile: Dockerfile
@@ -54,7 +56,7 @@ services:
     networks:
       - equipment-network
     depends_on:
-      - backend
+      - server
 
 volumes:
   pgdata:

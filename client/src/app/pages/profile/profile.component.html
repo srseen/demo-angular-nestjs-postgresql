@@ -1,0 +1,8 @@
+<div *ngIf="user">
+  <h2>โปรไฟล์ของคุณ</h2>
+  <p><strong>Email:</strong> {{ user.email }}</p>
+</div>
+
+<div *ngIf="!user">
+  <p>กำลังโหลดข้อมูล...</p>
+</div>

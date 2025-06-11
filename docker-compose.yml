@@ -40,6 +40,8 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - DB_NAME=${DB_NAME}
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_EXPIRATION_IN=${JWT_EXPIRATION_IN}
     expose:
       - "3000"
     networks:

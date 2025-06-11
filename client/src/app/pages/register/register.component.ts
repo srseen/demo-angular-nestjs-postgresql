@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
   successMessage: string = '';
   showPassword = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.registerForm = this.fb.group({
@@ -28,8 +28,22 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit() {
-    // handle form submission
+  onSubmit(): void {
+    if (this.registerForm.invalid) return;
+
+    this.isLoading = true;
+    this.errorMessage = '';
+
+    this.authService.register(this.registerForm.value).subscribe({
+      next: () => {
+        this.isLoading = false;
+        // เปลี่ยน route ไปหน้า verify หรือ login
+      },
+      error: (err) => {
+        this.errorMessage = err.error?.message || 'เกิดข้อผิดพลาด';
+        this.isLoading = false;
+      },
+    });
   }
 
   clearError() {

@@ -42,8 +42,8 @@ services:
       - DB_NAME=${DB_NAME}
       - JWT_SECRET=${JWT_SECRET}
       - JWT_EXPIRATION_IN=${JWT_EXPIRATION_IN}
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000"
     networks:
       - equipment-network
     depends_on:

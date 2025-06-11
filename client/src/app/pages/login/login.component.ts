@@ -1,60 +1,53 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
+export class LoginComponent {
   isLoading = false;
-  showPassword = false;
-  errorMessage = '';
-  successMessage = '';
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private authService: AuthService,
-    private router: Router
-  ) {
-    this.loginForm = this.formBuilder.group({
+  loginForm;
+
+  constructor(private fb: FormBuilder, private authService: AuthService) {
+    this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-      rememberMe: [false],
+      password: ['', Validators.required],
     });
   }
 
-  ngOnInit(): void {
-    // Optionally, reset the form or perform any initialization logic here
-    this.loginForm.reset();
-  }
-
   onSubmit() {
-    if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe({
-        next: (res) => {
-          localStorage.setItem('token', res.access_token);
-          this.router.navigate(['/profile']);
-        },
-        error: (err) => alert('Login failed: ' + err.error.message),
-      });
-    }
-  }
-  clearError() {
-    this.errorMessage = '';
-  }
+    if (this.loginForm.invalid) return;
 
-  clearSuccess() {
-    this.successMessage = '';
+    this.isLoading = true;
+    const { email, password } = this.loginForm.value;
+    this.authService
+      .login({
+        email: email ?? '',
+        password: password ?? '',
+      })
+      .subscribe({
+        next: () => {
+          this.isLoading = false;
+          alert('เข้าสู่ระบบสำเร็จ!');
+        },
+        error: () => {
+          this.isLoading = false;
+          alert('เข้าสู่ระบบไม่สำเร็จ');
+        },
+      });
   }
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+  errorMessage: string | null = null;
+  clearError() {
+    this.errorMessage = null;
+  }
+  successMessage: string | null = null;
+  clearSuccess() {
+    this.successMessage = null;
   }
 }

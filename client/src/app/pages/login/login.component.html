@@ -1,22 +1,19 @@
 <div
-  class="login-container d-flex align-items-center justify-content-center vh-100"
+  class="register-container d-flex align-items-center justify-content-center vh-100"
 >
   <div class="container">
     <div class="row justify-content-center">
-      <!-- Left Side - Login Form (Centered) -->
       <div class="col-lg-6 col-md-8 col-sm-10">
         <div
-          class="login-form-wrapper w-100 text-center p-4 border rounded shadow-sm bg-white mx-auto"
+          class="register-form-wrapper w-100 text-center p-4 border rounded shadow-sm bg-white mx-auto"
           style="max-width: 400px"
         >
           <div class="text-center mb-4">
             <div class="logo mb-3 animate__animated animate__fadeInDown">
-              <i class="fas fa-briefcase fa-3x text-primary"></i>
+              <i class="fas fa-user-plus fa-3x text-primary"></i>
             </div>
-            <h2 class="fw-bold text-dark mb-2">ยินดีต้อนรับกลับ</h2>
-            <p class="text-muted">
-              เข้าสู่ระบบเพื่อจัดการอุปกรณ์สำนักงานของคุณ
-            </p>
+            <h2 class="fw-bold text-dark mb-2">เข้าสู่ระบบ</h2>
+            <p class="text-muted">กรอกข้อมูลเพื่อเข้าใช้งานระบบ</p>
           </div>
 
           <!-- Alert Messages -->
@@ -48,7 +45,7 @@
             ></button>
           </div>
 
-          <!-- Login Form -->
+          <!-- Register Form -->
           <form
             [formGroup]="loginForm"
             (ngSubmit)="onSubmit()"
@@ -57,98 +54,26 @@
           >
             <div class="mb-3">
               <label for="email" class="form-label fw-semibold">อีเมล</label>
-              <div class="input-group">
-                <span class="input-group-text">
-                  <i class="fas fa-envelope text-muted"></i>
-                </span>
-                <input
-                  type="email"
-                  class="form-control"
-                  [class.is-invalid]="
-                    loginForm.get('email')?.invalid &&
-                    loginForm.get('email')?.touched
-                  "
-                  id="email"
-                  formControlName="email"
-                  placeholder="กรอกอีเมลของคุณ"
-                />
-              </div>
-              <div
-                *ngIf="
-                  loginForm.get('email')?.invalid &&
-                  loginForm.get('email')?.touched
-                "
-                class="invalid-feedback d-block"
-              >
-                <small *ngIf="loginForm.get('email')?.errors?.['required']">
-                  กรุณากรอกอีเมล
-                </small>
-                <small *ngIf="loginForm.get('email')?.errors?.['email']">
-                  รูปแบบอีเมลไม่ถูกต้อง
-                </small>
-              </div>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                formControlName="email"
+                placeholder="กรอกอีเมลของคุณ"
+              />
             </div>
 
             <div class="mb-3">
               <label for="password" class="form-label fw-semibold"
                 >รหัสผ่าน</label
               >
-              <div class="input-group">
-                <span class="input-group-text">
-                  <i class="fas fa-lock text-muted"></i>
-                </span>
-                <input
-                  [type]="showPassword ? 'text' : 'password'"
-                  class="form-control"
-                  [class.is-invalid]="
-                    loginForm.get('password')?.invalid &&
-                    loginForm.get('password')?.touched
-                  "
-                  id="password"
-                  formControlName="password"
-                  placeholder="กรอกรหัสผ่านของคุณ"
-                />
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  (click)="togglePasswordVisibility()"
-                >
-                  <i
-                    [class]="showPassword ? 'fas fa-eye-slash' : 'fas fa-eye'"
-                  ></i>
-                </button>
-              </div>
-              <div
-                *ngIf="
-                  loginForm.get('password')?.invalid &&
-                  loginForm.get('password')?.touched
-                "
-                class="invalid-feedback d-block"
-              >
-                <small *ngIf="loginForm.get('password')?.errors?.['required']">
-                  กรุณากรอกรหัสผ่าน
-                </small>
-                <small *ngIf="loginForm.get('password')?.errors?.['minlength']">
-                  รหัสผ่านต้องมีความยาวอย่างน้อย 6 ตัวอักษร
-                </small>
-              </div>
-            </div>
-
-            <div class="mb-3 d-flex justify-content-between align-items-center">
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="rememberMe"
-                  formControlName="rememberMe"
-                />
-                <label class="form-check-label text-muted" for="rememberMe">
-                  จดจำการเข้าสู่ระบบ
-                </label>
-              </div>
-              <a href="#" class="text-decoration-none text-primary small"
-                >ลืมรหัสผ่าน?</a
-              >
+              <input
+                type="password"
+                class="form-control"
+                id="password"
+                formControlName="password"
+                placeholder="กรอกรหัสผ่านของคุณ"
+              />
             </div>
 
             <button
@@ -156,36 +81,9 @@
               class="btn btn-primary w-100 py-2 fw-semibold"
               [disabled]="loginForm.invalid || isLoading"
             >
-              <span
-                *ngIf="isLoading"
-                class="spinner-border spinner-border-sm me-2"
-              ></span>
-              <i *ngIf="!isLoading" class="fas fa-sign-in-alt me-2"></i>
-              {{ isLoading ? "กำลังเข้าสู่ระบบ..." : "เข้าสู่ระบบ" }}
+              {{ isLoading ? "กำลังสมัครสมาชิก..." : "สมัครสมาชิก" }}
             </button>
           </form>
-
-          <div class="text-center mt-4">
-            <p class="text-muted mb-0">
-              ยังไม่มีบัญชี?
-              <a
-                routerLink="/register"
-                class="text-decoration-none text-primary fw-semibold"
-                >สมัครสมาชิก</a
-              >
-            </p>
-          </div>
-
-          <!-- Back to Home -->
-          <div class="text-center mt-4">
-            <a
-              routerLink="/"
-              class="btn btn-outline-secondary btn-sm animate__animated animate__fadeInUp"
-            >
-              <i class="fas fa-arrow-left me-2"></i>
-              กลับหน้าหลัก
-            </a>
-          </div>
         </div>
       </div>
     </div>

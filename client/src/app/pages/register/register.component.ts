@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [CommonModule, ReactiveFormsModule],
@@ -14,7 +15,11 @@ export class RegisterComponent {
 
   registerForm;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -35,6 +40,7 @@ export class RegisterComponent {
       })
       .subscribe({
         next: () => {
+          this.router.navigate(['/profile']);
           this.isLoading = false;
           this.successMessage = 'สมัครสมาชิกสำเร็จ!';
         },

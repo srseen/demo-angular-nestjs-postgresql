@@ -3,6 +3,7 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   imports: [CommonModule, ReactiveFormsModule],
@@ -14,7 +15,11 @@ export class LoginComponent {
 
   loginForm;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -32,13 +37,14 @@ export class LoginComponent {
         password: password ?? '',
       })
       .subscribe({
-        next: () => {
+        next: (res) => {
+          this.router.navigate(['/profile']);
           this.isLoading = false;
-          alert('เข้าสู่ระบบสำเร็จ!');
+          this.successMessage = 'เข้าสู่ระบบสำเร็จ!';
         },
         error: () => {
           this.isLoading = false;
-          alert('เข้าสู่ระบบไม่สำเร็จ');
+          this.errorMessage = 'เข้าสู่ระบบไม่สำเร็จ';
         },
       });
   }

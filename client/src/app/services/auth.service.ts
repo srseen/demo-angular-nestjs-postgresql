@@ -13,7 +13,7 @@ import {
   providedIn: 'root',
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000/auth'; // แก้ไข URL ตาม backend
+  private apiUrl = 'api/auth'; // แก้ไข URL ตาม backend
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
 

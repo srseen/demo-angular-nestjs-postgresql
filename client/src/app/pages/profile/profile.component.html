@@ -1,0 +1,15 @@
+<div class="container mt-4">
+  <div *ngIf="user" class="card">
+    <div class="card-header">
+      <h2>โปรไฟล์ของคุณ</h2>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+  </div>
+
+  <div *ngIf="!user" class="alert alert-info" role="alert">
+    <p>กำลังโหลดข้อมูล...</p>
+  </div>
+  <button class="btn btn-primary" routerLink="/equipment">Equipment</button>
+</div>

@@ -5,11 +5,14 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { EquipmentModule } from './equipment/equipment.module';
 import { EquipmentEntity } from './equipment/equipment.entity/equipment.entity';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './user/user.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      envFilePath: '.env',
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
@@ -27,6 +30,8 @@ import { EquipmentEntity } from './equipment/equipment.entity/equipment.entity';
       }),
     }),
     EquipmentModule,
+    AuthModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],

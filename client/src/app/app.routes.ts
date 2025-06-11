@@ -6,7 +6,7 @@ import { LandingPageComponent } from './pages/landing-page/landing-page.componen
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { AuthGuard } from './guards/auth.guard';
+// import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   // Redirect root to landing page
@@ -16,21 +16,18 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   // Authenticated routes
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent },
   {
     path: 'equipment',
     component: EquipmentListComponent,
-    canActivate: [AuthGuard],
   },
   {
-    path: 'eqipment/add',
+    path: 'equipment/add',
     component: EquipmentFormComponent,
-    canActivate: [AuthGuard],
   },
   {
     path: 'equipment/edit/:id',
     component: EquipmentFormComponent,
-    canActivate: [AuthGuard],
   },
 ];
 

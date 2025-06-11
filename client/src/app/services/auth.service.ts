@@ -25,7 +25,7 @@ export interface AuthResponse {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private baseUrl = 'http://backend:3000/api/auth';
+  private baseUrl = 'api/auth';
   private currentUserSubject = new BehaviorSubject<AuthResponse['user'] | null>(
     null
   );

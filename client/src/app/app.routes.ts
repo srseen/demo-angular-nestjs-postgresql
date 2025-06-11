@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { EquipmentListComponent } from './pages/equipment-list/equipment-list.component';
 import { EquipmentFormComponent } from './pages/equipment-form/equipment-form.component';
-import { LandingComponent } from './pages/landing-page/landing-page.component';
+import { LandingPageComponent } from './pages/landing-page/landing-page.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { LoginComponent } from './pages/login/login.component';
 import { ProfileComponent } from './pages/profile/profile.component';
@@ -10,7 +10,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   // Redirect root to landing page
-  { path: '', component: LandingComponent, pathMatch: 'full' },
+  { path: '', component: LandingPageComponent, pathMatch: 'full' },
   // Auth routes
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },

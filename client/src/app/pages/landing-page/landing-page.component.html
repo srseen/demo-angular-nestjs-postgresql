@@ -1,5 +1,5 @@
 <!-- Navigation -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top shadow-sm">
   <div class="container">
     <a class="navbar-brand fw-bold" href="#">
       <i class="bi bi-building"></i> OfficeHub
@@ -34,11 +34,14 @@
 </nav>
 
 <!-- Hero Section -->
-<section class="hero-section bg-gradient-primary text-white py-5">
+<section
+  class="hero-section bg-gradient-primary text-white py-5"
+  style="background: linear-gradient(to right, #007bff, #0056b3)"
+>
   <div class="container">
     <div class="row align-items-center min-vh-100">
       <div class="col-lg-6">
-        <div class="hero-content py-5">
+        <div class="hero-content py-5" data-aos="fade-right">
           <h1 class="display-4 fw-bold mb-4">
             จัดการอุปกรณ์สำนักงาน
             <span class="text-warning">ได้อย่างมีประสิทธิภาพ</span>
@@ -48,17 +51,20 @@
             ติดตามสถานะ ไปจนถึงการบำรุงรักษา ทั้งหมดในที่เดียว
           </p>
           <div class="d-flex gap-3 flex-wrap">
-            <a href="#features" class="btn btn-warning btn-lg px-4">
+            <a href="#features" class="btn btn-warning btn-lg px-4 shadow-sm">
               <i class="bi bi-arrow-right"></i> เริ่มต้นใช้งาน
             </a>
-            <a href="#about" class="btn btn-outline-light btn-lg px-4">
+            <a
+              href="#about"
+              class="btn btn-outline-light btn-lg px-4 shadow-sm"
+            >
               <i class="bi bi-play-circle"></i> ดูรายละเอียด
             </a>
           </div>
         </div>
       </div>
       <div class="col-lg-6">
-        <div class="hero-image text-center">
+        <div class="hero-image text-center" data-aos="fade-left">
           <div class="office-illustration p-4">
             <i class="bi bi-laptop display-1 text-warning d-block mb-3"></i>
             <i
@@ -78,10 +84,10 @@
 </section>
 
 <!-- Features Section -->
-<section id="features" class="py-5 bg-light">
+<section id="features" class="py-5 bg-light border-bottom">
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 mx-auto text-center mb-5">
+      <div class="col-lg-8 mx-auto text-center mb-5" data-aos="fade-up">
         <h2 class="display-5 fw-bold mb-3">คุณสมบัติที่โดดเด่น</h2>
         <p class="lead">
           เครื่องมือที่จำเป็นสำหรับการจัดการอุปกรณ์สำนักงานของคุณ
@@ -89,7 +95,7 @@
       </div>
     </div>
     <div class="row g-4">
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
         <div class="feature-card card border-0 shadow-sm h-100">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">
@@ -102,7 +108,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="200">
         <div class="feature-card card border-0 shadow-sm h-100">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">
@@ -115,7 +121,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
         <div class="feature-card card border-0 shadow-sm h-100">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">
@@ -128,7 +134,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="400">
         <div class="feature-card card border-0 shadow-sm h-100">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">
@@ -141,7 +147,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="500">
         <div class="feature-card card border-0 shadow-sm h-100">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">
@@ -154,7 +160,7 @@
           </div>
         </div>
       </div>
-      <div class="col-md-6 col-lg-4">
+      <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="600">
         <div class="feature-card card border-0 shadow-sm h-100">
           <div class="card-body text-center p-4">
             <div class="feature-icon mb-3">
@@ -172,10 +178,10 @@
 </section>
 
 <!-- About Section -->
-<section id="about" class="py-5">
+<section id="about" class="py-5 border-bottom">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-lg-6">
+      <div class="col-lg-6" data-aos="fade-right">
         <h2 class="display-5 fw-bold mb-4">เกี่ยวกับ OfficeHub</h2>
         <p class="lead mb-4">
           OfficeHub
@@ -221,7 +227,7 @@
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6" data-aos="fade-left">
         <div class="about-image text-center">
           <div class="bg-light rounded-3 p-5">
             <i class="bi bi-building display-1 text-primary mb-3"></i>
@@ -235,22 +241,26 @@
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="py-5 bg-primary text-white">
+<section
+  id="contact"
+  class="py-5 bg-primary text-white"
+  style="background: linear-gradient(to right, #0056b3, #007bff)"
+>
   <div class="container">
     <div class="row">
-      <div class="col-lg-8 mx-auto text-center">
+      <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
         <h2 class="display-5 fw-bold mb-4">พร้อมที่จะเริ่มต้นแล้วหรือยัง?</h2>
         <p class="lead mb-4">
           เริ่มใช้งาน OfficeHub วันนี้
           และเพิ่มประสิทธิภาพในการจัดการอุปกรณ์สำนักงานของคุณ
         </p>
         <div class="d-flex gap-3 justify-content-center flex-wrap">
-          <a routerLink="/login" class="btn btn-warning btn-lg px-4">
+          <a routerLink="/login" class="btn btn-warning btn-lg px-4 shadow-sm">
             <i class="bi bi-person-plus"></i> เริ่มใช้งาน
           </a>
           <a
             href="tel:+66-2-xxx-xxxx"
-            class="btn btn-outline-light btn-lg px-4"
+            class="btn btn-outline-light btn-lg px-4 shadow-sm"
           >
             <i class="bi bi-telephone"></i> ติดต่อเรา
           </a>
@@ -261,7 +271,7 @@
 </section>
 
 <!-- Footer -->
-<footer class="bg-dark text-white py-4">
+<footer class="bg-dark text-white py-4 border-top">
   <div class="container">
     <div class="row">
       <div class="col-md-6">

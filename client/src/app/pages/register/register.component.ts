@@ -1,26 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
 })
-export class RegisterComponent implements OnInit {
-  registerForm!: FormGroup;
+export class RegisterComponent {
   isLoading = false;
-  errorMessage: string = '';
-  successMessage: string = '';
-  showPassword = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  registerForm;
 
-  ngOnInit(): void {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -28,33 +22,35 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  onSubmit(): void {
+  onSubmit() {
     if (this.registerForm.invalid) return;
 
     this.isLoading = true;
-    this.errorMessage = '';
-
-    this.authService.register(this.registerForm.value).subscribe({
-      next: () => {
-        this.isLoading = false;
-        // เปลี่ยน route ไปหน้า verify หรือ login
-      },
-      error: (err) => {
-        this.errorMessage = err.error?.message || 'เกิดข้อผิดพลาด';
-        this.isLoading = false;
-      },
-    });
+    const { name, email, password } = this.registerForm.value;
+    this.authService
+      .register({
+        name: name ?? '',
+        email: email ?? '',
+        password: password ?? '',
+      })
+      .subscribe({
+        next: () => {
+          this.isLoading = false;
+          this.successMessage = 'สมัครสมาชิกสำเร็จ!';
+        },
+        error: () => {
+          this.isLoading = false;
+          this.errorMessage = 'เกิดข้อผิดพลาด';
+        },
+      });
   }
-
+  errorMessage = '';
   clearError() {
     this.errorMessage = '';
   }
 
+  successMessage = '';
   clearSuccess() {
     this.successMessage = '';
-  }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
   }
 }

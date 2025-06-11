@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
-import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   imports: [CommonModule, ReactiveFormsModule],
@@ -11,25 +11,35 @@ import { ReactiveFormsModule } from '@angular/forms';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  form: FormGroup;
+  registerForm!: FormGroup;
+  isLoading = false;
+  errorMessage: string = '';
+  successMessage: string = '';
+  showPassword = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {
-    this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
-    });
-  }
+  constructor(private fb: FormBuilder) {}
+
   ngOnInit(): void {
-    // Any initialization logic can go here.
-    // For now, we don't need to do anything on init.
+    this.registerForm = this.fb.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    });
   }
 
   onSubmit() {
-    if (this.form.valid) {
-      this.authService.register(this.form.value).subscribe({
-        next: () => alert('Signup success! Please verify your email.'),
-        error: (err) => alert('Signup failed: ' + err.error.message),
-      });
-    }
+    // handle form submission
+  }
+
+  clearError() {
+    this.errorMessage = '';
+  }
+
+  clearSuccess() {
+    this.successMessage = '';
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

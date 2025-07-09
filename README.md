@@ -21,7 +21,7 @@
 git clone https://github.com/srseen/demo-angular-nestjs-postgresql.git
 ```
 
-## ▶ How to Run
+## How to Run
 
 1. สร้างไฟล์ `.env` ไว้ level เดียวกับ docker-compose.yml
 
